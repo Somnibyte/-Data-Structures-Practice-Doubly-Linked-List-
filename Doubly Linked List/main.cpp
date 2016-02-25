@@ -3,7 +3,6 @@
 //  Doubly Linked List
 //
 //  Created by Guled on 2/24/16.
-//  Copyright © 2016 Somnibyte. All rights reserved.
 //
 
 #include <iostream>
