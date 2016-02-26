@@ -13,6 +13,50 @@ Node*::DoublyLinkedList::createNewNode(int value, Node *before, Node *after){
     return temp;
 }
 
+DoublyLinkedList::DoublyLinkedList(const DoublyLinkedList &doublylist){
+    
+    // Create new sentinel
+    Node* newTop = NULL;
+    
+    // Keeps track of node that was added previously
+    Node* lastAdded = newTop;
+    
+    // Keep track of the last item we added
+    Node* newBottom = newTop;
+    
+    // A pointer to go through the original list
+    Node* cursor = doublylist.top;
+
+    
+    while(cursor != NULL){
+        
+        // Are we at the beginning?
+        if(cursor == top){
+            // Create a new node for the newtop
+            newTop = createNewNode(cursor->data, newTop, cursor->next);
+            // Connect the next nodes "back pointer" to the where newtop is pointing to
+            newTop->next->prev = newTop;
+            // Move the cursor two places (becuase newTop's "next" has already been established)
+            cursor = cursor->next->next;
+            
+            // Move the newBottom
+            newBottom = newTop->next;
+            
+            // Keep track of the new node
+            lastAdded = newTop->next;
+        }
+        
+        
+        // If we are not in the beginning continue the normal process
+        newBottom->next = createNewNode(cursor->data, lastAdded, cursor->next);
+        newBottom = newBottom->next->next;
+        lastAdded = newBottom->prev;
+        newBottom->prev = lastAdded;
+        
+    }
+  
+    
+}
 
 void DoublyLinkedList::addItem(int value){
     

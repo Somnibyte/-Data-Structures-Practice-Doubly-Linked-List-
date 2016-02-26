@@ -8,6 +8,7 @@ class DoublyLinkedList {
     
 public:
     DoublyLinkedList(){ top = NULL; bottom = NULL; }
+    DoublyLinkedList(const DoublyLinkedList &doublylist);
     
     void addItem(int value);
     void addItemInOrder(int value, bool asc);
